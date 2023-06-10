@@ -3,6 +3,7 @@
     "model_class_name": "User",
     "model_class_name_plural": "Users",
     "model_name": "user",
+    "model_name_plural": "users",
     "model_secondary_property": "userEmail",
     "model_partition_key": "userId"
     
