@@ -7,7 +7,7 @@ const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.m
 const DbAdapter = require('../../infrastructure/db/dynamoDbAdapter');
 
 const dbAdapter = new DbAdapter();
-const {{cookiecutter.model_class_name}}Service = new {{cookiecutter.model_class_name}}Service(dbAdapter);
+const {{cookiecutter.model_name}}Service = new {{cookiecutter.model_class_name}}Service(dbAdapter);
 
 /**
  * 
