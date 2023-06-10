@@ -35,7 +35,7 @@ class {{cookiecutter.model_class_name}} {
     }
 
     pk() {
-        return this.{{cookiecutter.mode_partition_key}};
+        return this.{{cookiecutter.model_partition_key}};
     }
 
     static sortKey(key) {
