@@ -1,0 +1,9 @@
+{
+    "project_name": "users-crud-microservice",
+    "model_class_name": "User",
+    "model_class_name_plural": "Users",
+    "model_name": "user",
+    "model_secondary_property": "userEmail",
+    "model_partition_key": "userId"
+    
+}

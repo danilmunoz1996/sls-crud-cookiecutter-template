@@ -1,0 +1,8 @@
+{
+    "APP": "{{cookiecutter.model_name_plural}}-service",
+    "SERVICE": "{{cookiecutter.model_name_plural}}",
+    "EXPORT_TABLE_NAME": "{{cookiecutter.model_class_name_plural}}TableName",
+    "EXPORT_TABLE_ARN": "{{cookiecutter.model_class_name_plural}}TableArn",
+    "MODEL": "{{cookiecutter.model_name}}",
+    "MODEL_PLURAL": "{{cookiecutter.model_name_plural}}"
+}
