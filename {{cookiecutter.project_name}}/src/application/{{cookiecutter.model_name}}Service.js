@@ -13,7 +13,7 @@ class {{cookiecutter.model_class_name}}Service {
         return await this.dbAdapter.read(id);
     }
 
-    async update(id, model) {
+    async update(id, {{cookiecutter.model_name}}) {
         // Add any business logic here before updating the model
         return await this.dbAdapter.update(id, {{cookiecutter.model_name}});
     }
