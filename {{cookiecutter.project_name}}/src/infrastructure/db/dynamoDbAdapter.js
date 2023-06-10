@@ -9,15 +9,15 @@ class DynamoDbAdapter {
         this.tableName = tableName;
     }
 
-    async create({{cookiecutter.model}}) {
+    async create({{cookiecutter.model_name}}) {
         const params = {
           TableName: this.tableName,
-          Item: {{cookiecutter.model}}.toItem(),
+          Item: {{cookiecutter.model_name}}.toItem(),
         };
 
         try {
             await dynamoDb.put(params).promise();
-            const result = await this.read({{cookiecutter.model}}.pk());
+            const result = await this.read({{cookiecutter.model_name}}.pk());
             return result;
         } catch (error) {
           console.error(error);
@@ -44,15 +44,15 @@ class DynamoDbAdapter {
         }
     }
 
-    async update(id, {{cookiecutter.model}}) {
+    async update(id, {{cookiecutter.model_name}}) {
         let updateExpression = 'SET';
         let expressionAttributeNames = {};
         let expressionAttributeValues = {};
 
-        for ( const property in {{cookiecutter.model}} ) {
+        for ( const property in {{cookiecutter.model_name}} ) {
             updateExpression += ` #${property} = :${property},`;
             expressionAttributeNames[`#${property}`] = property;
-            expressionAttributeValues[`:${property}`] = {{cookiecutter.model}}[property];
+            expressionAttributeValues[`:${property}`] = {{cookiecutter.model_name}}[property];
         }
 
         // Remove the last comma
