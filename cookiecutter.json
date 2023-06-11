@@ -6,5 +6,4 @@
     "model_name_plural": "users",
     "model_secondary_property": "userEmail",
     "model_partition_key": "userId"
-    
 }
