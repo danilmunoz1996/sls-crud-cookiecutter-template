@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.model_name}}');
+const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.model_class_name}}');
 
 const TABLE_NAME = process.env.TABLE_NAME;
 

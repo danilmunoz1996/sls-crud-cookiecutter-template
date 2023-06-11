@@ -1,5 +1,5 @@
 const {{cookiecutter.model_class_name}}Service = require('../../application/{{cookiecutter.model_name}}Service');
-const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.model_name}}');
+const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.model_class_name}}');
 
 /**
  * use DynamoDB as database
