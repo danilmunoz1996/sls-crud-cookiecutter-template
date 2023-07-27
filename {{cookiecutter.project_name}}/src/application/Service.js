@@ -1,11 +1,11 @@
-class {{cookiecutter.model_class_name}}Service {
+class Service {
     constructor(dbAdapter) {
         this.dbAdapter = dbAdapter;
     }
 
-    async create({{cookiecutter.model_name}}) {
+    async create(model) {
         // Add any business logic here before creating the model
-        return await this.dbAdapter.create({{cookiecutter.model_name}});
+        return await this.dbAdapter.create(model);
     }
 
     async read(id) {
@@ -13,9 +13,9 @@ class {{cookiecutter.model_class_name}}Service {
         return await this.dbAdapter.read(id);
     }
 
-    async update(id, {{cookiecutter.model_name}}) {
+    async update(id, model) {
         // Add any business logic here before updating the model
-        return await this.dbAdapter.update(id, {{cookiecutter.model_name}});
+        return await this.dbAdapter.update(id, model);
     }
 
     async delete(id) {
@@ -24,4 +24,4 @@ class {{cookiecutter.model_class_name}}Service {
     }
 }
 
-module.exports = {{cookiecutter.model_class_name}}Service;
+module.exports = Service;

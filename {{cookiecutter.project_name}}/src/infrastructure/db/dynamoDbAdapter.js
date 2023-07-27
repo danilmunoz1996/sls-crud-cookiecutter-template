@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const {{cookiecutter.model_class_name}} = require('../../domain/{{cookiecutter.model_class_name}}');
+const Model = require('../../domain/Model');
 
 const TABLE_NAME = process.env.TABLE_NAME;
 
@@ -9,15 +9,15 @@ class DynamoDbAdapter {
         this.tableName = tableName;
     }
 
-    async create({{cookiecutter.model_name}}) {
+    async create(model) {
         const params = {
           TableName: this.tableName,
-          Item: {{cookiecutter.model_name}}.toItem(),
+          Item: model.toItem(),
         };
 
         try {
             await dynamoDb.put(params).promise();
-            const result = await this.read({{cookiecutter.model_name}}.pk());
+            const result = await this.read(model.pk());
             return result;
         } catch (error) {
           console.error(error);
@@ -28,7 +28,7 @@ class DynamoDbAdapter {
     async read(id) {
         const params = {
           TableName: this.tableName,
-          Key: {{cookiecutter.model_class_name}}.getKeys(id)
+          Key: Model.getKeys(id)
         };
 
         try {
@@ -44,15 +44,15 @@ class DynamoDbAdapter {
         }
     }
 
-    async update(id, {{cookiecutter.model_name}}) {
+    async update(id, model) {
         let updateExpression = 'SET';
         let expressionAttributeNames = {};
         let expressionAttributeValues = {};
 
-        for ( const property in {{cookiecutter.model_name}} ) {
+        for ( const property in model ) {
             updateExpression += ` #${property} = :${property},`;
             expressionAttributeNames[`#${property}`] = property;
-            expressionAttributeValues[`:${property}`] = {{cookiecutter.model_name}}[property];
+            expressionAttributeValues[`:${property}`] = model[property];
         }
 
         // Remove the last comma
@@ -60,7 +60,7 @@ class DynamoDbAdapter {
 
         const params = {
             TableName: this.tableName,
-            Key: {{cookiecutter.model_class_name}}.getKeys(id),
+            Key: Model.getKeys(id),
             ExpressionAttributeNames: expressionAttributeNames,
             ExpressionAttributeValues: expressionAttributeValues,
             UpdateExpression: updateExpression,
@@ -88,7 +88,7 @@ class DynamoDbAdapter {
         // If the model exists, we proceed to delete it
         const params = {
             TableName: this.tableName,
-            Key: {{cookiecutter.model_class_name}}.getKeys(id),
+            Key: Model.getKeys(id),
         };
         
         try {

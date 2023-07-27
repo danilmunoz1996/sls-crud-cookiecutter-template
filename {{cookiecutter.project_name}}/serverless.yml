@@ -23,25 +23,25 @@ provider:
 
 functions:
   create:
-    handler: src/interfaces/rest/${file(./project-metadata.json):MODEL}Routes.create
+    handler: src/interfaces/rest/Routes.create
     events:
       - httpApi:
           path: /${file(./project-metadata.json):MODEL_PLURAL}
           method: post
   read:
-    handler: src/interfaces/rest/${file(./project-metadata.json):MODEL}Routes.read
+    handler: src/interfaces/rest/Routes.read
     events:
       - httpApi:
           path: /${file(./project-metadata.json):MODEL_PLURAL}/{id}
           method: get
   update:
-    handler: src/interfaces/rest/${file(./project-metadata.json):MODEL}Routes.update
+    handler: src/interfaces/rest/Routes.update
     events:
       - httpApi:
           path: /${file(./project-metadata.json):MODEL_PLURAL}/{id}
           method: put
   delete:
-    handler: src/interfaces/rest/${file(./project-metadata.json):MODEL}Routes.delete
+    handler: src/interfaces/rest/Routes.delete
     events:
       - httpApi:
           path: /${file(./project-metadata.json):MODEL_PLURAL}/{id}

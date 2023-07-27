@@ -1,5 +1,5 @@
 {
-    "APP": "{{cookiecutter.model_name}}-service",
+    "APP": "{{cookiecutter.model}}-service",
     "SERVICE": "{{cookiecutter.model_name}}",
     "EXPORT_TABLE_NAME": "{{cookiecutter.model_class_name}}TableName",
     "EXPORT_TABLE_ARN": "{{cookiecutter.model_class_name}}TableArn",
