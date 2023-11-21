@@ -1,5 +1,5 @@
 const Service = require('../../application/Service');
-const Model = require('../../domain/Model');
+const Model = require('../../domain/{{cookiecutter.model_class_name}}');
 
 /**
  * use DynamoDB as database
@@ -15,7 +15,7 @@ const service = new Service(dbAdapter);
  * @returns 
  */
 module.exports.create = async (event) => {
-    const modelData = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
     const model = new Model(data);
     await service.create(model);
     return {
@@ -66,3 +66,14 @@ module.exports.delete = async (event) => {
         body: JSON.stringify({ message: 'Object deleted successfully' }),
     };
 };
+
+/**
+ * 
+ */
+module.exports.list = async () => {
+    const data = await service.list();
+    return {
+        statusCode: 200,
+        body: JSON.stringify(data),
+    };
+}

@@ -19,7 +19,18 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource: !ImportValue ${file(./project-metadata.json):EXPORT_TABLE_ARN}
-
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedHeaders:
+        - '*'
+      allowedMethods:
+        - OPTIONS
+        - GET
+        - POST
+        - PUT
+        - DELETE
 
 functions:
   create:
@@ -46,3 +57,9 @@ functions:
       - httpApi:
           path: /${file(./project-metadata.json):MODEL_PLURAL}/{id}
           method: delete
+  list:
+    handler: src/interfaces/rest/Routes.list
+    events:
+      - httpApi:
+          path: /${file(./project-metadata.json):MODEL_PLURAL}
+          method: get

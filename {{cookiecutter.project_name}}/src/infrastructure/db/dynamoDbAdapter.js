@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const Model = require('../../domain/Model');
+const Model = require('../../domain/{{cookiecutter.model_class_name}}');
 
 const TABLE_NAME = process.env.TABLE_NAME;
 
@@ -97,6 +97,39 @@ class DynamoDbAdapter {
             console.error(error);
             throw error;
         }
+    }
+
+    async list() {
+      const params = {
+          TableName: this.tableName
+      };
+
+      try {
+          const result = await dynamoDb.scan(params).promise();
+          return result.Items;
+      } catch (error) {
+          console.error(error);
+          throw error;
+      }
+    }
+
+    async getByIndex(indexName, fieldName, fieldValue) {
+      const params = {
+          TableName: this.tableName,
+          IndexName: indexName,
+          KeyConditionExpression: fieldName + ' = :fieldValue',
+          ExpressionAttributeValues: {
+              ':fieldValue': fieldValue,
+          },
+      };
+  
+      try {
+          const result = await dynamoDb.query(params).promise();
+          return result.Items;
+      } catch (error) {
+          console.error(error);
+          throw error;
+      }
     }
 }
 

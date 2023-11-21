@@ -1,3 +1,12 @@
+/**
+ * This is the service layer. It is responsible for handling business logic.
+ */
+
+/**
+ * This is an example of a foreign relation in case you need it
+ */
+// const RELATED_ENTITY_INDEX_NAME = 'entityIdIndex';
+
 class Service {
     constructor(dbAdapter) {
         this.dbAdapter = dbAdapter;
@@ -22,6 +31,18 @@ class Service {
         // Add any business logic here before deleting the model
         return await this.dbAdapter.delete(id);
     }
+
+    async list() {
+        // Add any business logic here before listing the models
+        return await this.dbAdapter.list();
+    }
+
+    /**
+     * an example implementarion of a foreign relation
+     */
+    // async foreignRelationEntity(entityId) {
+    //     return await this.dbAdapter.getByIndex(ENTITY_INDEX_NAME, 'entityId', entityId);
+    // }
 }
 
 module.exports = Service;
