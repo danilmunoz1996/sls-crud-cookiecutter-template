@@ -1,5 +1,6 @@
 {
     "project_name": "users-crud-microservice",
+    "project": "app",
     "model_class_name": "User",
     "model_name": "user",
     "model_secondary_property": "email",
